@@ -1,6 +1,6 @@
 /* eslint-env node */
-const axios = require('axios');
-const addDays = require('date-fns/addDays');
+import { get } from 'axios';
+import addDays from 'date-fns/addDays';
 
 function getDate(d = new Date()) {
   return d.toJSON().split('T')[0];
@@ -8,8 +8,7 @@ function getDate(d = new Date()) {
 
 // tests the structure of the json is the way we expect
 function test() {
-  return axios
-    .get(
+  return get(
       `https://api.nasa.gov/neo/rest/v1/feed?start_date=${getDate()}&api_key=DEMO_KEY`
     )
     .then(({ data }) => {
